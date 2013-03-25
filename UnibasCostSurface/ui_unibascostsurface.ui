@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>UnibasCostSurface</class>
+ <widget class="QDialog" name="UnibasCostSurface">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>685</width>
+    <height>395</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>Unibas Cost Surface Analysis Tool v. 0.1, by D. Gnesi and D. Roubis</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="11" column="0">
+    <widget class="QLabel" name="lblCostFile">
+     <property name="text">
+      <string>Output cost surface raster:</string>
+     </property>
+     <property name="buddy">
+      <cstring>lnCostFile</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="19" column="0" colspan="2">
+    <widget class="QCheckBox" name="chkLoadAllocation">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Load the cost weighted allocation raster on the current project.</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="15" column="0" colspan="2">
+    <widget class="QCheckBox" name="chkAllocate">
+     <property name="text">
+      <string>Perform a cost weighted allocation analysis</string>
+     </property>
+    </widget>
+   </item>
+   <item row="16" column="0">
+    <widget class="QLabel" name="lblIdField">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>ID field or band:</string>
+     </property>
+     <property name="buddy">
+      <cstring>cmbIdField</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="13" column="0" colspan="2">
+    <widget class="QCheckBox" name="chkLoadCost">
+     <property name="text">
+      <string>Load the cost surface raster on the current project.</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="1">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLineEdit" name="lnCostFile"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnBrowseCost">
+       <property name="toolTip">
+        <string>browse...</string>
+       </property>
+       <property name="text">
+        <string>...</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="18" column="1">
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QLineEdit" name="lnAllocationFile">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnBrowseAllocation">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="toolTip">
+        <string>browse...</string>
+       </property>
+       <property name="text">
+        <string>...</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="16" column="1">
+    <widget class="QComboBox" name="cmbIdField">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QComboBox" name="cmbEntitiesLayer"/>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="lblEntitiesLayer">
+     <property name="text">
+      <string>Entities layer:</string>
+     </property>
+     <property name="buddy">
+      <cstring>cmbEntitiesLayer</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="21" column="1">
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="18" column="0">
+    <widget class="QLabel" name="lblAllocationFile">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Output allocation raster:</string>
+     </property>
+     <property name="buddy">
+      <cstring>lnAllocationFile</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="22" column="1">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QDialogButtonBox" name="buttonBox">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="standardButtons">
+        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Help|QDialogButtonBox::Ok</set>
+       </property>
+       <property name="centerButtons">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="4" column="1">
+    <widget class="QComboBox" name="cmbSurfaceRaster">
+     <property name="whatsThis">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can select a raster band or an attribute field of the input layer containg float values that will be used to multiply the cost computed from those pixels or entities. A value of 1 will live the cost unaltered. With values &amp;lt; 1, the cost will decrease. With values &amp;gt; 1, the cost will encrease.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QLabel" name="lblSurfaceRaster">
+     <property name="text">
+      <string>Friction surface layer (raster):</string>
+     </property>
+     <property name="buddy">
+      <cstring>cmbSurfaceRaster</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="2">
+    <widget class="QCheckBox" name="chkAllTouched">
+     <property name="text">
+      <string>Use the 'ALL_TOUCHED' option while rasterizing the entities layer.</string>
+     </property>
+    </widget>
+   </item>
+   <item row="20" column="0" colspan="2">
+    <widget class="QCheckBox" name="chkUseMemory">
+     <property name="text">
+      <string>Perform all calculations in memory </string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="lblEntitiesMultipliers">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="text">
+      <string>Site's rank field:</string>
+     </property>
+     <property name="buddy">
+      <cstring>cmbEntitiesMultipliers</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QComboBox" name="cmbEntitiesMultipliers">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="whatsThis">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can select a raster band or an attribute field of the input layer containg float values that will be used to multiply the cost computed from those pixels or entities. A value of 1 will live the cost unaltered. With values &amp;lt; 1, the cost will decrease. With values &amp;gt; 1, the cost will encrease.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>cmbEntitiesLayer</tabstop>
+  <tabstop>cmbEntitiesMultipliers</tabstop>
+  <tabstop>chkAllTouched</tabstop>
+  <tabstop>cmbSurfaceRaster</tabstop>
+  <tabstop>lnCostFile</tabstop>
+  <tabstop>btnBrowseCost</tabstop>
+  <tabstop>chkLoadCost</tabstop>
+  <tabstop>chkAllocate</tabstop>
+  <tabstop>cmbIdField</tabstop>
+  <tabstop>lnAllocationFile</tabstop>
+  <tabstop>btnBrowseAllocation</tabstop>
+  <tabstop>chkLoadAllocation</tabstop>
+  <tabstop>chkUseMemory</tabstop>
+  <tabstop>buttonBox</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>UnibasCostSurface</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>674</x>
+     <y>384</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>UnibasCostSurface</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>674</x>
+     <y>384</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>chkAllocate</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>lnAllocationFile</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>243</x>
+     <y>220</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>583</x>
+     <y>287</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>chkAllocate</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>btnBrowseAllocation</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>243</x>
+     <y>220</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>674</x>
+     <y>287</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>chkAllocate</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>chkLoadAllocation</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>243</x>
+     <y>220</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>322</x>
+     <y>316</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>chkAllocate</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>cmbIdField</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>371</x>
+     <y>220</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>675</x>
+     <y>253</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>chkAllocate</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>lblIdField</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>371</x>
+     <y>220</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>117</x>
+     <y>253</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>chkAllocate</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>lblEntitiesMultipliers</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>371</x>
+     <y>220</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>117</x>
+     <y>68</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>chkAllocate</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>lblAllocationFile</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>371</x>
+     <y>220</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>117</x>
+     <y>288</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
