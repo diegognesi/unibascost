@@ -23,6 +23,7 @@
 from PyQt4 import QtCore, QtGui
 
 from ui_unibascostsurface import Ui_UnibasCostSurface
+from helpdialog import HelpDialog
 
 from qgis.core import *
 import osgeo.gdal as gdal
@@ -54,6 +55,12 @@ class UnibasCostSurfaceDialog(QtGui.QDialog):
         self.ui.chkLoadAllocation.toggled.connect(self.toggle_ok_button)
         self.ui.lnCostFile.textChanged.connect(self.toggle_ok_button)
         self.ui.lnAllocationFile.textChanged.connect(self.toggle_ok_button)
+        self.ui.buttonBox.button(QtGui.QDialogButtonBox.Help).clicked.connect(self.help_requested)
+
+    def help_requested(self, value=None):
+        dlg = HelpDialog()
+        dlg.show()
+        dlg.exec_()
 
     def load_supported_formats(self):
         if not self.supported_formats:

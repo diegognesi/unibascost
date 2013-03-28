@@ -23,7 +23,7 @@ PLUGIN_UPLOAD = $(CURDIR)/plugin_upload.py
 # Makefile for a PyQGIS plugin 
 
 # translation
-SOURCES = unibascostsurface.py ui_unibascostsurface.py ui_progress.py __init__.py unibascostsurfacedialog.py progressdialog.py
+SOURCES = unibascostsurface.py ui_unibascostsurface.py ui_progress.py ui_help.py __init__.py unibascostsurfacedialog.py progressdialog.py helpdialog.py
 #TRANSLATIONS = i18n/unibascostsurface_en.ts
 TRANSLATIONS = 
 
@@ -35,11 +35,9 @@ PY_FILES = unibascostsurface.py unibascostsurfacedialog.py progress.py __init__.
 
 EXTRAS = icon.png 
 
-UI_FILES = ui_unibascostsurface.py ui_progress.py
+UI_FILES = ui_unibascostsurface.py ui_progress.py ui_help.py
 
 RESOURCE_FILES = resources_rc.py
-
-HELP = help/build/html
 
 default: compile
 
@@ -64,7 +62,6 @@ deploy: compile doc transcompile
 	cp -vf $(RESOURCE_FILES) $(HOME)/.qgis/python/plugins/$(PLUGINNAME)
 	cp -vf $(EXTRAS) $(HOME)/.qgis/python/plugins/$(PLUGINNAME)
 	cp -vfr i18n $(HOME)/.qgis/python/plugins/$(PLUGINNAME)
-	cp -vfr $(HELP) $(HOME)/.qgis/python/plugins/$(PLUGINNAME)/help
 
 # The dclean target removes compiled python files from plugin directory
 # also delets any .svn entry
@@ -112,6 +109,3 @@ transclean:
 clean:
 	rm $(UI_FILES) $(RESOURCE_FILES)
 
-# build documentation with sphinx
-doc: 
-	cd help; make html

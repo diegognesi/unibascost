@@ -193,7 +193,7 @@ class CostAnalyzer:
             if s["perform_allocation"]:
                 return (s["cost_file"], s["allocation_file"])
             else:
-                return s["cost_file"]
+                return (s["cost_file"],)
         except Exception as e:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
@@ -249,10 +249,19 @@ class CostAnalyzer:
             self.prog("Rasterization completed.")
         if ent_multipliers and ent_multipliers != "[]":
             if not self.settings["ent_is_vector"]:
-                self.prog("Copying rank file...")
-                # TODO: Ottiene un nome di file libero con la stessa estensione del precedente. Infatti su rank bisogna scrivere!!!!!
-                rank_file = ent_file
-                rank_band = int(self.settings["ent_multipliers"])
+                self.prog("Copying rank data to a temporary file...")
+                rank_band_num = int(self.settings["ent_multipliers"])
+                rank_file = self.get_free_file_name("tif")
+                rank_out_ds = self.open_new_ds(self, rank_file, metadata, 1, float)
+                rank_out_band = rank_out_ds.GetRasterBand(rank_band_num)
+                rank_in_ds = gdal.Open(ent_file)
+                rank_in_band = rank_in_ds.GetRasterBand(rank_band_num)
+                for row in self.rows:
+                    curr_row = rank_in_band.ReadAsArray(0, row, cols, 1)
+                    rank_out_band.WriteArray(curr_row, 0, row)
+                rank_in_ds = None
+                rank_out_ds = None
+                rank_band = 1
             else:
                 rank_file = self.get_free_file_name("tif")
                 rank_band = 1
@@ -453,7 +462,7 @@ class CostAnalyzer:
     def execute_iterations(self):
         allocate = self.settings["perform_allocation"]
         rank_file = self.settings["rank_file"]
-        self.prog("Calculating costs. Slow but very very VERY accurate: it may take a lot of time!")
+        self.prog("Calculating costs. Very slow but very VERY accurate: it may take a lot of time!")
         self.cost_ds = gdal.Open(self.settings["cost_file"], GA_Update)
         if allocate:
             self.allocation_ds = gdal.Open(self.settings["allocation_file"], GA_Update)
@@ -483,6 +492,8 @@ class CostAnalyzer:
                     if do_it == False and modified == True:
                         do_it = True
             do_it_reverse = not do_it_reverse
+            if not self.proceed():
+                raise Exception("Operation aborted!")
         self.cost_ds = None
         self.allocation_ds = None
         self.friction_ds = None
@@ -530,7 +541,7 @@ class CostAnalyzer:
     def execute_iterations_in_memory(self):
         rows = self.rows
         self.load_data_in_memory()
-        self.prog("Calculating costs. Slow but very very VERY accurate: it may take a lot of time!")
+        self.prog("Calculating costs. Very slow but very VERY accurate: it may take a lot of time!")
         rows_range = range(rows)
         reverse_rows_range = range(rows-1, -1, -1)
         do_it = True

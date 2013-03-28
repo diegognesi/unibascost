@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui_unibascostsurface.ui'
 #
-# Created: Mon Mar 25 20:11:44 2013
+# Created: Tue Mar 26 01:05:01 2013
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -150,7 +150,7 @@ class Ui_UnibasCostSurface(object):
         UnibasCostSurface.setWindowTitle(QtGui.QApplication.translate("UnibasCostSurface", "Unibas Cost Surface Analysis Tool v. 0.1, by D. Gnesi and D. Roubis", None, QtGui.QApplication.UnicodeUTF8))
         self.lblCostFile.setText(QtGui.QApplication.translate("UnibasCostSurface", "Output cost surface raster:", None, QtGui.QApplication.UnicodeUTF8))
         self.chkLoadAllocation.setText(QtGui.QApplication.translate("UnibasCostSurface", "Load the cost weighted allocation raster on the current project.", None, QtGui.QApplication.UnicodeUTF8))
-        self.chkAllocate.setText(QtGui.QApplication.translate("UnibasCostSurface", "Perform a cost weighted allocation analysis", None, QtGui.QApplication.UnicodeUTF8))
+        self.chkAllocate.setText(QtGui.QApplication.translate("UnibasCostSurface", "Perform a cost-based allocation analysis.", None, QtGui.QApplication.UnicodeUTF8))
         self.lblIdField.setText(QtGui.QApplication.translate("UnibasCostSurface", "ID field or band:", None, QtGui.QApplication.UnicodeUTF8))
         self.chkLoadCost.setText(QtGui.QApplication.translate("UnibasCostSurface", "Load the cost surface raster on the current project.", None, QtGui.QApplication.UnicodeUTF8))
         self.btnBrowseCost.setToolTip(QtGui.QApplication.translate("UnibasCostSurface", "browse...", None, QtGui.QApplication.UnicodeUTF8))
@@ -162,7 +162,7 @@ class Ui_UnibasCostSurface(object):
         self.cmbSurfaceRaster.setWhatsThis(QtGui.QApplication.translate("UnibasCostSurface", "<html><head/><body><p>You can select a raster band or an attribute field of the input layer containg float values that will be used to multiply the cost computed from those pixels or entities. A value of 1 will live the cost unaltered. With values &lt; 1, the cost will decrease. With values &gt; 1, the cost will encrease.</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
         self.lblSurfaceRaster.setText(QtGui.QApplication.translate("UnibasCostSurface", "Friction surface layer (raster):", None, QtGui.QApplication.UnicodeUTF8))
         self.chkAllTouched.setText(QtGui.QApplication.translate("UnibasCostSurface", "Use the \'ALL_TOUCHED\' option while rasterizing the entities layer.", None, QtGui.QApplication.UnicodeUTF8))
-        self.chkUseMemory.setText(QtGui.QApplication.translate("UnibasCostSurface", "Perform all calculations in memory ", None, QtGui.QApplication.UnicodeUTF8))
-        self.lblEntitiesMultipliers.setText(QtGui.QApplication.translate("UnibasCostSurface", "Site\'s rank field:", None, QtGui.QApplication.UnicodeUTF8))
+        self.chkUseMemory.setText(QtGui.QApplication.translate("UnibasCostSurface", "Perform all calculations in memory.", None, QtGui.QApplication.UnicodeUTF8))
+        self.lblEntitiesMultipliers.setText(QtGui.QApplication.translate("UnibasCostSurface", "Starting points\' rank field:", None, QtGui.QApplication.UnicodeUTF8))
         self.cmbEntitiesMultipliers.setWhatsThis(QtGui.QApplication.translate("UnibasCostSurface", "<html><head/><body><p>You can select a raster band or an attribute field of the input layer containg float values that will be used to multiply the cost computed from those pixels or entities. A value of 1 will live the cost unaltered. With values &lt; 1, the cost will decrease. With values &gt; 1, the cost will encrease.</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
 

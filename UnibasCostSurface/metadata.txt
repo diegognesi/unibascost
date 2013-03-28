@@ -24,11 +24,11 @@ email=diego.gnesi@gmail.com
 # changelog=
 
 # tags are comma separated with spaces allowed
-tags=cost,cost distance,cost surface analysis, ost surface allocation
+tags=cost,cost distance,cost surface analysis, cost-based allocation
 
 homepage=http://www.diegognesi.it
-tracker=
-repository=
+tracker=https://github.com/diegognesi/unibascost/issues
+repository=https://github.com/diegognesi/unibascost.git
 icon=icon.png
 # experimental flag
 experimental=False

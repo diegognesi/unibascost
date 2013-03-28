@@ -55,17 +55,17 @@ class UnibasCostSurface:
         # Create action that will start plugin configuration
         self.action = QAction(
             QIcon(":/plugins/unibascostsurface/icon.png"),
-            u"UNIBAS Cost urface Analysis", self.iface.mainWindow())
+            u"UNIBAS Cost Surface Analysis and Cost-based Allocation", self.iface.mainWindow())
         # connect the action to the run method
         QObject.connect(self.action, SIGNAL("triggered()"), self.run)
 
         # Add toolbar button and menu item
         self.iface.addToolBarIcon(self.action)
-        self.iface.addPluginToMenu(u"&UNIBAS Cost urface Analysis", self.action)
+        self.iface.addPluginToMenu(u"&UNIBAS Cost Surface Analysis", self.action)
 
     def unload(self):
         # Remove the plugin menu item and icon
-        self.iface.removePluginMenu(u"&UNIBAS Cost urface Analysis", self.action)
+        self.iface.removePluginMenu(u"&UNIBAS Cost Surface Analysis", self.action)
         self.iface.removeToolBarIcon(self.action)
 
     # run method that performs all the real work

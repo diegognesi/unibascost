@@ -46,7 +46,7 @@
    <item row="15" column="0" colspan="2">
     <widget class="QCheckBox" name="chkAllocate">
      <property name="text">
-      <string>Perform a cost weighted allocation analysis</string>
+      <string>Perform a cost-based allocation analysis.</string>
      </property>
     </widget>
    </item>
@@ -210,7 +210,7 @@
    <item row="20" column="0" colspan="2">
     <widget class="QCheckBox" name="chkUseMemory">
      <property name="text">
-      <string>Perform all calculations in memory </string>
+      <string>Perform all calculations in memory.</string>
      </property>
     </widget>
    </item>
@@ -220,7 +220,7 @@
       <bool>true</bool>
      </property>
      <property name="text">
-      <string>Site's rank field:</string>
+      <string>Starting points' rank field:</string>
      </property>
      <property name="buddy">
       <cstring>cmbEntitiesMultipliers</cstring>

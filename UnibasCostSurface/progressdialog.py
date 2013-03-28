@@ -51,7 +51,7 @@ class ProgressDialog(QtGui.QDialog):
         QtGui.QMessageBox.information(self, "Unibas Cost Surface Analysis Tool", "Cost analysis completed!", buttons=QtGui.QMessageBox.Ok)
         if self.settings["load_cost"]:
             self.load_raster_layer(files[0], "cost")
-        if self.settings["load_allocation"]:
+        if self.settings["perform_allocation"] and self.settings["load_allocation"]:
             self.load_raster_layer(files[1], "cost-based allocations")
         self.close()
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 /***************************************************************************
- UnibasCostSurface
+ UnibasCostSurfaceDialog
                                  A QGIS plugin
  Tool for cost surface analysis and cost surface allocation with a lot of options.
                              -------------------
@@ -18,36 +18,14 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
- This script initializes the plugin, making it known to QGIS.
 """
+from PyQt4 import QtCore, QtGui
+from ui_help import Ui_Help
 
+class HelpDialog(QtGui.QDialog):
 
-def name():
-    return "UNIBAS Cost Surface Analysis and Cost-based Allocation"
-
-
-def description():
-    return "Tool for cost surface analysis and cost-based allocation."
-
-
-def version():
-    return "Version 0.1"
-
-
-def icon():
-    return "icon.png"
-
-
-def qgisMinimumVersion():
-    return "1.8"
-
-def author():
-    return "Diego Gnesi Bartolani, Dimitris Roubis"
-
-def email():
-    return "diego.gnesi@gmail.com"
-
-def classFactory(iface):
-    # load UnibasCostSurface class from file UnibasCostSurface
-    from unibascostsurface import UnibasCostSurface
-    return UnibasCostSurface(iface)
+    def __init__(self):
+        QtGui.QDialog.__init__(self)
+        # Set up the user interface from Designer.
+        self.ui = Ui_Help()
+        self.ui.setupUi(self)
